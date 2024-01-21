@@ -8,6 +8,7 @@ export function ApiStack({ stack }: StackContext) {
     // Create the API
     const api = new Api(stack, "Api", {
         defaults: {
+            authorizer: "iam",
             function: {
                 // this allows our API to use our DynamoDB table
                 bind: [table],
@@ -28,12 +29,13 @@ export function ApiStack({ stack }: StackContext) {
             // update a note
             "PUT /notes/{id}":"packages/functions/src/update.main",
 
-            //delete a note
+            // delete a note
             "DELETE /notes/{id}":"packages/functions/src/delete.main"
         },
     });
 
     // Show the API endpoint in the output
+    // 
     stack.addOutputs({
     ApiEndpoint: api.url,
     });
