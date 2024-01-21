@@ -1,10 +1,10 @@
 import { StackContext, Bucket, Table } from "sst/constructs";
 
 export function StorageStack({ stack }: StackContext) {
-    // Create an S3 bucket
+    // Create a generic bucket
     const bucket = new Bucket(stack, "Uploads");
 
-    // Create the DynamoDB table
+    // Create a generic table
     const table = new Table(stack, "Notes", {
     fields: {
         userId: "string",
